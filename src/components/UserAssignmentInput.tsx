@@ -22,7 +22,7 @@ const UserAssignmentInput: FunctionComponent<
       : []
 
   const isAdministator = userList.find(
-    (user) => user.displayName === 'Marianne Samuel'
+    (user) => user.email === 'marianne.samuel@vy.no'
   )
 
   const filterUserList = userList.filter(() => {
