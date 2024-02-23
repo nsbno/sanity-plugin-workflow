@@ -66,7 +66,7 @@ export const workflow = definePlugin<WorkflowConfig>(
 
           if (
             context.currentUser &&
-            context.currentUser.roles.includes(
+            !context.currentUser.roles.includes(
               'administrator' as unknown as Role
             )
           ) {
