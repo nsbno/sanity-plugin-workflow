@@ -18,8 +18,11 @@ export default function UserAssignment(props: UserAssignmentProps) {
   const client = useClient({apiVersion: API_VERSION})
   const toast = useToast()
 
-  console.log('userList', userList)
-  console.log('assignees', assignees)
+  const filteredUserList = userList.filter(
+    (user) => user.email !== 'marianne.samuel@vy.no'
+  )
+
+  console.log('filteredUserList', filteredUserList)
 
   const addAssignee = React.useCallback(
     (userId: string) => {

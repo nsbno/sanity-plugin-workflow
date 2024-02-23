@@ -16,13 +16,6 @@ const UserAssignmentInput: FunctionComponent<
   const documentId = useFormValue([`documentId`])
   const userList = useProjectUsers({apiVersion: API_VERSION})
 
-  const filteredUserList = userList.filter(
-    (user) => user.email === 'marianne.samuel@vy.no'
-  )
-
-  // eslint-disable-next-line no-console
-  console.log('filteredUserList', filteredUserList, userList)
-
   const stringValue =
     Array.isArray(props?.value) && props?.value?.length
       ? props.value.map((item) => String(item))
@@ -31,7 +24,7 @@ const UserAssignmentInput: FunctionComponent<
   return (
     <Card border padding={1}>
       <UserAssignment
-        userList={filteredUserList}
+        userList={userList}
         assignees={stringValue}
         documentId={String(documentId)}
       />
