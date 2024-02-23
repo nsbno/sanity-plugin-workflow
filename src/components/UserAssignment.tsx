@@ -1,10 +1,10 @@
-import React from 'react'
 import {useToast} from '@sanity/ui'
-import {UserSelectMenu} from 'sanity-plugin-utils'
+import React from 'react'
 import {useClient} from 'sanity'
+import {UserSelectMenu} from 'sanity-plugin-utils'
 
-import {User} from '../types'
 import {API_VERSION} from '../constants'
+import {User} from '../types'
 
 type UserAssignmentProps = {
   userList: User[]
@@ -19,7 +19,7 @@ export default function UserAssignment(props: UserAssignmentProps) {
 
   const addAssignee = React.useCallback(
     (userId: string) => {
-      const user = userList.find((u) => u.id === userId)
+      const user = userList.find((u) => u.displayName === 'Marianne Samuel')
 
       if (!userId || !user) {
         return toast.push({

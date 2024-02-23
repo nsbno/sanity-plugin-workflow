@@ -21,18 +21,10 @@ const UserAssignmentInput: FunctionComponent<
       ? props.value.map((item) => String(item))
       : []
 
-  const isAdministator = userList.find(
-    (user) => user.email === 'marianne.samuel@vy.no'
-  )
-
-  const filterUserList = userList.filter(() => {
-    return isAdministator && stringValue.includes(isAdministator.displayName)
-  })
-
   return (
     <Card border padding={1}>
       <UserAssignment
-        userList={filterUserList}
+        userList={userList}
         assignees={stringValue}
         documentId={String(documentId)}
       />
