@@ -19,14 +19,14 @@ export default function UserAssignment(props: UserAssignmentProps) {
   const toast = useToast()
 
   const filteredUserList = userList.filter(
-    (user) => user.email !== 'marianne.samuel@vy.no'
+    (user) => user.email === 'marianne.samuel@vy.no'
   )
 
   console.log('filteredUserList', filteredUserList)
 
   const addAssignee = React.useCallback(
     (userId: string) => {
-      const user = userList.find((u) => u.id === userId)
+      const user = filteredUserList.find((u) => u.id === userId)
 
       if (!userId || !user) {
         return toast.push({
@@ -56,12 +56,12 @@ export default function UserAssignment(props: UserAssignmentProps) {
           })
         })
     },
-    [documentId, client, toast, userList]
+    [documentId, client, toast, filteredUserList]
   )
 
   const removeAssignee = React.useCallback(
     (userId: string) => {
-      const user = userList.find((u) => u.id === userId)
+      const user = filteredUserList.find((u) => u.id === userId)
 
       if (!userId || !user) {
         return toast.push({
@@ -90,7 +90,7 @@ export default function UserAssignment(props: UserAssignmentProps) {
           })
         })
     },
-    [client, toast, documentId, userList]
+    [client, toast, documentId, filteredUserList]
   )
 
   const clearAssignees = React.useCallback(() => {
@@ -119,7 +119,7 @@ export default function UserAssignment(props: UserAssignmentProps) {
     <UserSelectMenu
       style={{maxHeight: 300}}
       value={assignees || []}
-      userList={userList}
+      userList={filteredUserList}
       onAdd={addAssignee}
       onClear={clearAssignees}
       onRemove={removeAssignee}
