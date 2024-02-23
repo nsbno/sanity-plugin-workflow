@@ -17,7 +17,7 @@ const UserAssignmentInput: FunctionComponent<
   const userList = useProjectUsers({apiVersion: API_VERSION})
 
   const filteredUserList = userList.filter(
-    (user) => !props?.value?.includes(user.email === 'marianne.samuel@vy.no')
+    (user) => user.email === 'marianne.samuel@vy.no'
   )
 
   const stringValue =
