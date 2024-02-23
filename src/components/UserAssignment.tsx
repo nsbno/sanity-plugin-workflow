@@ -19,10 +19,10 @@ export default function UserAssignment(props: UserAssignmentProps) {
   const toast = useToast()
 
   const filteredUserList = userList.filter(
-    (user) => user.email === 'marianne.samuel@vy.no'
+    (user) =>
+      user.email === 'marianne.samuel@vy.no' ||
+      user.email === 'christine.emilie.kolderup@vy.no'
   )
-
-  console.log('filteredUserList', filteredUserList)
 
   const addAssignee = React.useCallback(
     (userId: string) => {
