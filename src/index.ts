@@ -66,7 +66,7 @@ export const workflow = definePlugin<WorkflowConfig>(
 
           if (
             context.currentUser?.roles?.some(
-              (role: Role) => role.name === 'administrator'
+              (role: Role) => role.name === 'contributor'
             )
           ) {
             return [
