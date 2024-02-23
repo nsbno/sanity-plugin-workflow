@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {useToast} from '@sanity/ui'
 import React from 'react'
 import {useClient} from 'sanity'
@@ -16,6 +17,9 @@ export default function UserAssignment(props: UserAssignmentProps) {
   const {assignees, userList, documentId} = props
   const client = useClient({apiVersion: API_VERSION})
   const toast = useToast()
+
+  console.log('userList', userList)
+  console.log('assignees', assignees)
 
   const addAssignee = React.useCallback(
     (userId: string) => {

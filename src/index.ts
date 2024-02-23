@@ -1,9 +1,4 @@
-import {
-  definePlugin,
-  DocumentActionProps,
-  isObjectInputProps,
-  Role,
-} from 'sanity'
+import {definePlugin, DocumentActionProps, isObjectInputProps} from 'sanity'
 
 import {AssignWorkflow} from './actions/AssignWorkflow'
 import {BeginWorkflow} from './actions/BeginWorkflow'
@@ -64,24 +59,16 @@ export const workflow = definePlugin<WorkflowConfig>(
             return prev
           }
 
-          if (
-            context.currentUser &&
-            context.currentUser.roles.some(
-              (role: Role) => role.name === 'contributor'
-            )
-          ) {
-            return [
-              (props) => BeginWorkflow(props),
-              (props) => AssignWorkflow(props),
-              ...states.map(
-                (state) => (props: DocumentActionProps) =>
-                  UpdateWorkflow(props, state)
-              ),
-              (props) => CompleteWorkflow(props),
-              ...prev,
-            ]
-          }
-          return prev
+          return [
+            (props) => BeginWorkflow(props),
+            (props) => AssignWorkflow(props),
+            ...states.map(
+              (state) => (props: DocumentActionProps) =>
+                UpdateWorkflow(props, state)
+            ),
+            (props) => CompleteWorkflow(props),
+            ...prev,
+          ]
         },
         badges: (prev, context) => {
           if (!schemaTypes.includes(context.schemaType)) {
