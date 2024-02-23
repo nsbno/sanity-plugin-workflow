@@ -24,8 +24,8 @@ export function AssignWorkflow(props: DocumentActionProps) {
   return {
     icon: UsersIcon,
     type: 'dialog',
-    disabled: !metadata || loading || error,
-    label: `Assign`,
+    disabled: !metadata || loading || error || metadata?.assignees?.length > 0,
+    label: metadata?.assignees?.length > 0 ? `Waiting for approval` : `Assign`,
     title: metadata ? null : `Document is not in Workflow`,
     dialog: isDialogOpen && {
       type: 'popover',
