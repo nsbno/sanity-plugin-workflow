@@ -19,7 +19,7 @@ export default function UserAssignment(props: UserAssignmentProps) {
 
   const addAssignee = React.useCallback(
     (userId: string) => {
-      const user = userList.find((u) => u.displayName === 'Marianne Samuel')
+      const user = userList.find((u) => u.id === userId)
 
       if (!userId || !user) {
         return toast.push({

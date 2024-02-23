@@ -16,6 +16,10 @@ const UserAssignmentInput: FunctionComponent<
   const documentId = useFormValue([`documentId`])
   const userList = useProjectUsers({apiVersion: API_VERSION})
 
+  const filteredUserList = userList.filter(
+    (user) => !props?.value?.includes(user.email === 'marianne.samuel@vy.no')
+  )
+
   const stringValue =
     Array.isArray(props?.value) && props?.value?.length
       ? props.value.map((item) => String(item))
@@ -24,7 +28,7 @@ const UserAssignmentInput: FunctionComponent<
   return (
     <Card border padding={1}>
       <UserAssignment
-        userList={userList}
+        userList={filteredUserList}
         assignees={stringValue}
         documentId={String(documentId)}
       />
