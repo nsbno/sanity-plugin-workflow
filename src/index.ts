@@ -65,8 +65,11 @@ export const workflow = definePlugin<WorkflowConfig>(
           }
 
           if (
-            context.currentUser?.roles?.some(
-              (role: Role) => role.name === 'contributor'
+            context.currentUser?.roles?.filter(
+              (role: Role) => role.name === 'vyno-contributor'
+            ) ||
+            context.currentUser?.roles?.filter(
+              (role: Role) => role.name === 'vyse-contributor'
             )
           ) {
             return [
@@ -81,17 +84,6 @@ export const workflow = definePlugin<WorkflowConfig>(
             ]
           }
           return prev
-
-          // return [
-          //   (props) => BeginWorkflow(props),
-          //   (props) => AssignWorkflow(props),
-          //   ...states.map(
-          //     (state) => (props: DocumentActionProps) =>
-          //       UpdateWorkflow(props, state)
-          //   ),
-          //   (props) => CompleteWorkflow(props),
-          //   ...prev,
-          // ]
         },
         badges: (prev, context) => {
           if (!schemaTypes.includes(context.schemaType)) {
