@@ -60,16 +60,11 @@ export const workflow = definePlugin<WorkflowConfig>(
       },
       document: {
         actions: (prev, context) => {
-          if (!schemaTypes.includes(context.schemaType)) {
-            return prev
-          }
-
           if (
             context.currentUser?.roles?.filter(
-              (role: Role) => role.name === 'vyno-contributor'
-            ) ||
-            context.currentUser?.roles?.filter(
-              (role: Role) => role.name === 'vyse-contributor'
+              (role: Role) =>
+                role.name === 'vyno-contributor' ||
+                role.name === 'vyse-contributor'
             )
           ) {
             return [
@@ -83,7 +78,7 @@ export const workflow = definePlugin<WorkflowConfig>(
               ...prev,
             ]
           }
-          return prev
+          return [...prev.map((originalAction) => originalAction)]
         },
         badges: (prev, context) => {
           if (!schemaTypes.includes(context.schemaType)) {

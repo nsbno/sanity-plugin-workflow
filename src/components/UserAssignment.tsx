@@ -18,10 +18,12 @@ export default function UserAssignment(props: UserAssignmentProps) {
   const client = useClient({apiVersion: API_VERSION})
   const toast = useToast()
 
+  //TODO: This is for the MVP, we should have a better way to filter users
   const filteredUserList = userList.filter(
     (user) =>
       user.email === 'marianne.samuel@vy.no' ||
-      user.email === 'christine.emilie.kolderup@vy.no'
+      user.email === 'christine.emilie.kolderup@vy.no' ||
+      user.email === 'helen.soderlund@vy.se'
   )
 
   const addAssignee = React.useCallback(
