@@ -70,7 +70,7 @@ export const workflow = definePlugin<WorkflowConfig>(
             )
           ) {
             return [
-              ...prev.map((originalAction) => originalAction),
+              //...prev.map((originalAction) => originalAction),
               (props) => BeginWorkflow(props),
               (props) => AssignWorkflow(props),
               ...states.map(
@@ -80,6 +80,7 @@ export const workflow = definePlugin<WorkflowConfig>(
               (props) => CompleteWorkflow(props),
             ]
           }
+
           return prev
         },
         badges: (prev, context) => {
