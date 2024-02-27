@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {
   definePlugin,
   DocumentActionProps,
@@ -60,6 +61,19 @@ export const workflow = definePlugin<WorkflowConfig>(
       },
       document: {
         actions: (prev, context) => {
+          console.log('context', context)
+          console.log('context.currentUser', context.currentUser)
+          console.log('context.currentUser?.roles', context.currentUser?.roles)
+          console.log(
+            'context.currentUser?.roles?.some((role: Role) => role.name === "vyno-contributor" || role.name === "vyse-contributor" || role.title === "vyno-contributor" || role.title === "vyse-contributor")',
+            context.currentUser?.roles?.some(
+              (role: Role) =>
+                role.name === 'vyno-contributor' ||
+                role.name === 'vyse-contributor' ||
+                role.title === 'vyno-contributor' ||
+                role.title === 'vyse-contributor'
+            )
+          )
           if (
             context.currentUser?.roles?.some(
               (role: Role) =>
