@@ -61,14 +61,16 @@ export const workflow = definePlugin<WorkflowConfig>(
       document: {
         actions: (prev, context) => {
           if (
-            context.currentUser?.roles?.filter(
-              (role: Role) => role.name === 'vyno-contributor'
-            ) ||
-            context.currentUser?.roles?.filter(
-              (role: Role) => role.name === 'vyse-contributor'
+            context.currentUser?.roles?.some(
+              (role: Role) =>
+                role.name === 'vyno-contributor' ||
+                role.name === 'vyse-contributor' ||
+                role.title === 'vyno-contributor' ||
+                role.title === 'vyse-contributor'
             )
           ) {
             return [
+              ...prev.map((originalAction) => originalAction),
               (props) => BeginWorkflow(props),
               (props) => AssignWorkflow(props),
               ...states.map(
@@ -76,7 +78,6 @@ export const workflow = definePlugin<WorkflowConfig>(
                   UpdateWorkflow(props, state)
               ),
               (props) => CompleteWorkflow(props),
-              ...prev,
             ]
           }
           return prev
